@@ -1,8 +1,10 @@
 
 public class Coche {
-	private String modelo, potencia, marca, matricula, averia;
+	private String modelo, marca, matricula, averia;
 
-	public Coche(String modelo, String potencia, String marca, String matricula, String averia) {
+	private int potencia;
+
+	public Coche(String modelo, int potencia, String marca, String matricula, String averia) {
 		super();
 		this.modelo = modelo;
 		this.potencia = potencia;
@@ -19,11 +21,11 @@ public class Coche {
 		this.modelo = modelo;
 	}
 
-	public String getPotencia() {
+	public int getPotencia() {
 		return potencia;
 	}
 
-	public void setPotencia(String potencia) {
+	public void setPotencia(int potencia) {
 		this.potencia = potencia;
 	}
 
