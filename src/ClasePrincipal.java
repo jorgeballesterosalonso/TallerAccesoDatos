@@ -6,42 +6,51 @@ public class ClasePrincipal {
 
 		int eleccion = EntradaSalida.mostrarMenu();
 
-		switch (eleccion) {
+		do {
+			switch (eleccion) {
 
-		case EntradaSalida.NUEVO_VEHICULO:
+			case EntradaSalida.NUEVO_VEHICULO:
 
-			Coche nuevoCoche = EntradaSalida.pedirDatos();
-			System.out.println(nuevoCoche.toString());
-			AccesoBBDD.insertarCoche(nuevoCoche);
+				Coche nuevoCoche = EntradaSalida.pedirDatos();
+				System.out.println("Has insertado un vehículo: ");
+				EntradaSalida.mostrarVehiculo(nuevoCoche);
+				AccesoBBDD.insertarCoche(nuevoCoche);
 
-			break;
+				break;
 
-		case EntradaSalida.LISTAR_VEHICULOS:
+			case EntradaSalida.LISTAR_VEHICULOS:
 
-			ArrayList<Coche> listaCoches = AccesoBBDD.consultarCoches();
+				ArrayList<Coche> listaCoches = AccesoBBDD.consultarCoches();
 
-			for (Coche coche : listaCoches) {
-				EntradaSalida.mostrarVehiculo(coche);
+				for (Coche coche : listaCoches) {
+					EntradaSalida.mostrarVehiculo(coche);
+				}
+
+				break;
+
+			case EntradaSalida.BUSCAR_VEHICULO:
+
+				String matricula = EntradaSalida.pedirMatricula();
+				Coche cocheBuscado = AccesoBBDD.consultarMatricula(matricula);
+
+				if (cocheBuscado != null) {
+					EntradaSalida.mostrarVehiculo(cocheBuscado);
+				} else
+					System.out.println("No hay ningún vehículo con esta matrícula");
+
+				break;
+
+			case EntradaSalida.COPIA_DE_SEGURIDAD:
+				AccesoFichero.copiaSeguridad();
+				break;
+
+			case EntradaSalida.SALIR:
+				break;
 			}
 
-			break;
+			eleccion = EntradaSalida.mostrarMenu();
 
-		case EntradaSalida.BUSCAR_VEHICULO:
-
-			String matricula = EntradaSalida.pedirMatricula();
-			Coche cocheBuscado = AccesoBBDD.consultarMatricula(matricula);
-			EntradaSalida.mostrarVehiculo(cocheBuscado);
-
-			break;
-
-		case EntradaSalida.COPIA_DE_SEGURIDAD:
-			AccesoFichero.copiaSeguridad();
-			break;
-
-		case EntradaSalida.SALIR:
-			break;
-		}
-
+		} while (eleccion != EntradaSalida.SALIR);
 	}
 
 }

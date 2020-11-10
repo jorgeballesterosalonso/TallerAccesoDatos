@@ -1,7 +1,3 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 public class EntradaSalida {
@@ -23,15 +19,28 @@ public class EntradaSalida {
 		System.out.println("5 - Salir");
 
 		int eleccion = sc.nextInt();
-
 		return eleccion;
 	}
 
 	public static Coche pedirDatos() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println(
-				"Ingrese los datos del nuevo vehículo en este orden: modelo, potencia, marca, matricula y la avería ");
-		Coche coche = new Coche(sc.next(), sc.nextInt(), sc.next(), sc.next(), sc.next());
+
+		System.out.println("Ingrese la marca del nuevo vehículo ");
+		String Marca = sc.nextLine();
+
+		System.out.println("Ingrese el modelo");
+		String Modelo = sc.nextLine();
+
+		System.out.println("Ingrese la potencia");
+		int Potencia = Integer.parseInt(sc.nextLine());
+
+		System.out.println("Ingrese la Matrícula");
+		String Matricula = sc.nextLine();
+
+		System.out.println("Ingrese la Avería");
+		String Averia = sc.nextLine();
+
+		Coche coche = new Coche(Modelo, Potencia, Marca, Matricula, Averia);
 		return coche;
 
 	}
@@ -44,7 +53,8 @@ public class EntradaSalida {
 	}
 
 	public static void mostrarVehiculo(Coche coche) {
-		System.out.println(coche.toString());
+		System.out.println("Marca: " + coche.getMarca() + ", Modelo: " + coche.getModelo() + ", Potencia: "
+				+ coche.getPotencia() + ", Matrícula: " + coche.getMatricula() + ", Avería: " + coche.getAveria());
 	}
 
 }

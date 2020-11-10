@@ -12,23 +12,25 @@ public class AccesoFichero {
 			FileWriter fw = new FileWriter(f);
 
 			ArrayList<Coche> archivoCoches = AccesoBBDD.consultarCoches();
-			String archivo = "Modelo;Marca;Potencia;atricula;Averia\n";
+			String archivo = "Modelo;Marca;Potencia;Matricula;Averia\n";
 
 			for (Coche coche : archivoCoches) {
-				archivo+=coche.getModelo();
-				archivo+=";";
-				archivo+=coche.getMarca();
-				archivo+=";";
-				archivo+=coche.getPotencia();
-				archivo+=";";
-				archivo+=coche.getMatricula();
-				archivo+=";";
-				archivo+=coche.getAveria();
-				archivo+="\n";
-				
+
+				archivo += coche.getModelo();
+				archivo += ";";
+				archivo += coche.getMarca();
+				archivo += ";";
+				archivo += coche.getPotencia();
+				archivo += ";";
+				archivo += coche.getMatricula();
+				archivo += ";";
+				archivo += coche.getAveria();
+				archivo += "\n";
+
 			}
 
 			fw.write(archivo);
+			fw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
